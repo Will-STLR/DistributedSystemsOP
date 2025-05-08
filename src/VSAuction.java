@@ -1,3 +1,4 @@
+//TODO: VSAuction needs to implement Serializable
 public class VSAuction {
 
     /* The auction name. */

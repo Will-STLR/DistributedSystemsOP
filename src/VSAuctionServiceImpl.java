@@ -18,7 +18,6 @@ public class VSAuctionServiceImpl implements VSAuctionService {
         /*
         First index: Highest Bid
         Second index: Previous Bidder
-        Third index: Auction greater
         */
         VSAuctionEventHandler[] eventHandlers = new VSAuctionEventHandler[2];
         auctionList.put(auction, eventHandlers);
@@ -53,7 +52,7 @@ public class VSAuctionServiceImpl implements VSAuctionService {
 
     @Override
     public boolean placeBid(String userName, String auctionName, int price, VSAuctionEventHandler handler) throws VSAuctionException, RemoteException {
-        if (price < 0) throw new VSAuctionException("Price must be positive");
+        if (price < 0) throw new IllegalArgumentException("Price must be positive");
 
         for(VSAuction a : auctionList.keySet()) {
             if(a.getName().equals(auctionName)) {
@@ -62,7 +61,7 @@ public class VSAuctionServiceImpl implements VSAuctionService {
                     auctionList.get(a)[0].handleEvent(VSAuctionEventType.HIGHER_BID, a);
                     VSAuctionEventHandler[] eventHandlers = {
                             handler,                            //  New highest bidder
-                            auctionList.get(a)[1],              //  Previous highest bidder
+                            auctionList.get(a)[0],              //  Previous highest bidder
                     };
                     auctionList.put(a, eventHandlers);
                     return true;
