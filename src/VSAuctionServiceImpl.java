@@ -25,7 +25,7 @@ public class VSAuctionServiceImpl implements VSAuctionService {
 
         new Thread(() -> {
            try {
-                //millis will never be negative because of row 11
+                //millis will never be negative because of row 11 - so we don't need Error Handling
                 Thread.sleep(duration * 1000L);
 
                 VSAuctionEventHandler winner = auctionList.get(auction)[0];
