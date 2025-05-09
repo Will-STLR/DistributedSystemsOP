@@ -1,5 +1,7 @@
+import java.io.Serializable;
+
 //TODO: VSAuction needs to implement Serializable
-public class VSAuction {
+public class VSAuction implements Serializable {
 
     /* The auction name. */
     private final String name;
@@ -20,5 +22,9 @@ public class VSAuction {
 
     public int getPrice() {
         return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

@@ -19,7 +19,7 @@ public class VSAuctionServiceImpl implements VSAuctionService {
         First index: Highest Bid
         Second index: Previous Bidder
         */
-        VSAuctionEventHandler[] eventHandlers = new VSAuctionEventHandler[2];
+        VSAuctionEventHandler[] eventHandlers = new VSAuctionEventHandler[] {handler, handler};
         auctionList.put(auction, eventHandlers);
 
         new Thread(() -> {
@@ -59,6 +59,7 @@ public class VSAuctionServiceImpl implements VSAuctionService {
                 if (price > a.getPrice()) {
                     // Information for the previous highest bidder that they have been outbid
                     auctionList.get(a)[0].handleEvent(VSAuctionEventType.HIGHER_BID, a);
+                    a.setPrice(price);
                     VSAuctionEventHandler[] eventHandlers = {
                             handler,                            //  New highest bidder
                             auctionList.get(a)[0],              //  Previous highest bidder
