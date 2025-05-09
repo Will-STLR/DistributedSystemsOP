@@ -9,7 +9,7 @@ public abstract class VSShell {
 
     protected abstract boolean processCommand(String[] args) throws RemoteException;
 
-    public void shell() {
+    public void shell() throws RemoteException {
         // Create input reader and process commands
         BufferedReader commandLine = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
