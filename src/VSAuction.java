@@ -21,5 +21,4 @@ public class VSAuction {
     public int getPrice() {
         return price;
     }
-
 }

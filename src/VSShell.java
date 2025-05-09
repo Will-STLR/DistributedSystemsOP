@@ -1,12 +1,13 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.rmi.RemoteException;
 import java.util.LinkedList;
 
 
 public abstract class VSShell {
 
-    protected abstract boolean processCommand(String[] args);
+    protected abstract boolean processCommand(String[] args) throws RemoteException;
 
     public void shell() {
         // Create input reader and process commands

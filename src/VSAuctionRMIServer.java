@@ -10,7 +10,7 @@ public class VSAuctionRMIServer {
         VSAuctionService service = (VSAuctionService) UnicastRemoteObject.exportObject(serviceImpl, 0);
         //Bind a remote object at registry
         Registry registry = LocateRegistry.createRegistry(123);
-        registry.bind("remoteService", service);
+        registry.bind("remoteVSAuctionService", service);
 
         //Continue running a process
         Thread.sleep(Long.MAX_VALUE);
